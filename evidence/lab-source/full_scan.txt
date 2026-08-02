@@ -1,0 +1,17 @@
+# Nmap 7.98 scan initiated Sun Aug  2 17:48:55 2026 as: /usr/lib/nmap/nmap -p- -sV -O -oN full_scan.txt 192.168.56.21
+Nmap scan report for 192.168.56.21
+Host is up (0.00041s latency).
+Not shown: 65533 closed tcp ports (reset)
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.6 (Ubuntu Linux; protocol 2.0)
+8080/tcp open  http    BaseHTTPServer 0.6 (Python 3.10.12)
+MAC Address: 08:00:27:62:3D:18 (Oracle VirtualBox virtual NIC)
+Device type: general purpose|router
+Running: Linux 4.X|5.X, MikroTik RouterOS 7.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3
+OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Aug  2 17:49:04 2026 -- 1 IP address (1 host up) scanned in 9.64 seconds
