@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Negative Retest - Patched VM" tests="1" failures="0" errors="0">
+  <testcase name="exploit_fails_at_injection_precondition">
+    <system-out>
+      Command injection precondition not met.
+    </system-out>
+    <system-err>
+      The exploit attempted command injection on /diagnose?host=127.0.0.1;echo INJECTION_TEST_OK
+      and the patched endpoint did not execute the command. The vulnerability is closed.
+    </system-err>
+  </testcase>
+</testsuite>

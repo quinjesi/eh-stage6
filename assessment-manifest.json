@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "project_id": "EH-A2",
+  "variant": "V4",
+  "candidate_binding": "UBI-2026-0300",
+  "assigned_pack": {
+    "file_name": "ethical-hacking-stage-6-shared-b2.tar.gz",
+    "sha256": "c656a7b4ae9884a86a174c392c9778550e4959a4e05fa4bcf8bc27f89a8da047",
+    "manifest_signature": " c39d5cc0f2f01a41291a303d1d08611c5883390bb089a4caf3defcd2bdada5cb",
+    "verified_before_use": true
+  },
+  "commit": "40-character-git-commit",
+  "supported_environment": {
+    "os": "Kali GNU/Linux Rolling",
+    "cpu": "4",
+    "memory_gb": 5,
+    "tool_versions": {"nmap": "7.98", "gobuster": "8.2", "curl": "8.18.0", "ssh": "10.2p1"}
+  },
+  "commands": {
+    "provision": "export UBI_STAGE6_MARKER='UBI-A6-9FA1AA9363D7",
+    "build": "vagrant up",
+    "test": "pytest test_exploit.py -v",
+    "clean": "vagrant snapshot restore vulnerable patched clean-start"
+  },
+  "results": {
+    "public_tests": { "passed": 8, "failed": 0, "report": "/tests/test_results.xml" },
+    "runtime_seconds": 0.61,
+    "peak_memory_mb": 60.57,
+    "output_hashes": {"exploit-chain/run_result.json": "96ccf42dc1d125cba603bae6fca2d274f798a5210115318822ffda168bf5c0d0"}
+  },
+  "inputs": {
+    "Target IP": "192.168.56.21, 192.168.56.22",
+    "Arguments": "--phase full --output [output file]",
+    "Default ssh key": "[path/to/key]"
+  },
+  "outputs": {
+    "User flag": "UBI{A6_USER_81730E33E40959284138D11A}",
+    "Root flag": "UBI{A6_ROOT_5E78CBB890A6DEC276118C17}",
+    "run result": "run_result.json"
+  },
+  "manual_preconditions": [
+    "Target VM is reachable on the host-only network at the assigned IP address (192.168.56.21)",
+    "Vagrant snapshot 'clean-start' is restored before each reliability run",
+    "SSH access as 'vagrant' using the default Vagrant private key is possible from the attacker host to perform service restoration if required"
+  ],
+  "known_limitations": [
+    "Ed25519 SSH key generation is not supported in the Python environment; the exploit falls back to RSA key generation",
+    "The chain performs an automated health check and attempts to fix the netforge-support service using the default Vagrant credentials; this step is required on clean snapshots where the service is unhealthy, making it dependent on the Vagrant SSH key for initial service repair",
+    "Cleanup removes all injected artifacts but does not revert the web service to an unhealthy state; relies on manual snapshot restore"
+  ]
+}

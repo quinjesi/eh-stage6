@@ -1,0 +1,57 @@
+{
+  "total_runs": 5,
+  "successful_runs": 5,
+  "success_rate": 1.0,
+  "average_duration_seconds": 6.198,
+  "flags": {
+    "user": "UBI{A6_USER_81730E33E40959284138D11A}",
+    "root": "UBI{A6_ROOT_5E78CBB890A6DEC276118C17}"
+  },
+  "runs": [
+    {
+      "timestamp": "2026-08-02T18:39:53.131Z",
+      "duration_seconds": 6.087,
+      "success": true,
+      "flags": {
+        "user": "UBI{A6_USER_81730E33E40959284138D11A}",
+        "root": "UBI{A6_ROOT_5E78CBB890A6DEC276118C17}"
+      }
+    },
+    {
+      "timestamp": "2026-08-02T18:40:48.256Z",
+      "duration_seconds": 6.076,
+      "success": true,
+      "flags": {
+        "user": "UBI{A6_USER_81730E33E40959284138D11A}",
+        "root": "UBI{A6_ROOT_5E78CBB890A6DEC276118C17}"
+      }
+    },
+    {
+      "timestamp": "2026-08-02T18:41:49.842Z",
+      "duration_seconds": 6.995,
+      "success": true,
+      "flags": {
+        "user": "UBI{A6_USER_81730E33E40959284138D11A}",
+        "root": "UBI{A6_ROOT_5E78CBB890A6DEC276118C17}"
+      }
+    },
+    {
+      "timestamp": "2026-08-02T18:42:45.516Z",
+      "duration_seconds": 6.000,
+      "success": true,
+      "flags": {
+        "user": "UBI{A6_USER_81730E33E40959284138D11A}",
+        "root": "UBI{A6_ROOT_5E78CBB890A6DEC276118C17}"
+      }
+    },
+    {
+      "timestamp": "2026-08-02T18:43:26.944Z",
+      "duration_seconds": 5.832,
+      "success": true,
+      "flags": {
+        "user": "UBI{A6_USER_81730E33E40959284138D11A}",
+        "root": "UBI{A6_ROOT_5E78CBB890A6DEC276118C17}"
+      }
+    }
+  ]
+}

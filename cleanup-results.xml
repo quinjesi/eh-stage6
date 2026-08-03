@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cleanup-results>
+  <vm name="VM1 - vulnerable" actions="6">
+    <action target="remove__srv_support_uploads_'--checkpoint=1'" result="removed" />
+    <action target="remove__srv_support_uploads_'--checkpoint-action=exec=sh_payload.sh'" result="removed" />
+    <action target="remove__srv_support_uploads_payload.sh" result="removed" />
+    <action target="remove__srv_support_uploads_dummy.txt" result="removed" />
+    <action target="remove__srv_support_uploads__tmp_rootshell" result="removed" />
+    <action target="remove__home_support_.ssh_authorized_keys" result="key removed" />
+  </vm>
+  <vm name="VM2 - patched" actions="0" />
+</cleanup-results>

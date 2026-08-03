@@ -1,32 +1,32 @@
 {
   "schema_version": "1.0",
-  "project_id": "SOC-A1",
-  "variant": "V1",
-  "candidate_binding": "from-assigned-participant-pack",
+  "project_id": "EH-A2",
+  "variant": "V4",
+  "candidate_binding": "UBI-2026-0300",
   "assigned_pack": {
-    "file_name": "",
-    "sha256": "",
-    "manifest_signature": "",
-    "verified_before_use": false
+    "file_name": "ethical-hacking-stage-6-shared-b2.tar.gz",
+    "sha256": "c656a7b4ae9884a86a174c392c9778550e4959a4e05fa4bcf8bc27f89a8da047",
+    "manifest_signature": " c39d5cc0f2f01a41291a303d1d08611c5883390bb089a4caf3defcd2bdada5cb",
+    "verified_before_use": true
   },
   "commit": "40-character-git-commit",
   "supported_environment": {
-    "os": "",
-    "cpu": "",
-    "memory_gb": 0,
-    "tool_versions": {}
+    "os": "Kali GNU/Linux Rolling",
+    "cpu": "4",
+    "memory_gb": 5,
+    "tool_versions": {"nmap": "7.98", "gobuster": "8.2", "curl": "8.18.0", "ssh": "10.2p1"}
   },
   "commands": {
-    "provision": "",
-    "build": "",
-    "test": "",
-    "clean": ""
+    "provision": "export UBI_STAGE6_MARKER='UBI-A6-9FA1AA9363D7",
+    "build": "vagrant up",
+    "test": "pytest test_exploit.py -v",
+    "clean": "vagrant snapshot restore vulnerable patched clean-start"
   },
   "results": {
-    "public_tests": { "passed": 0, "failed": 0, "report": "" },
-    "runtime_seconds": 0,
-    "peak_memory_mb": 0,
-    "output_hashes": {}
+    "public_tests": { "passed": 8, "failed": 0, "report": "/tests/test_results.xml" },
+    "runtime_seconds": 0.61,
+    "peak_memory_mb": 60.57,
+    "output_hashes": {"exploit-chain/run_result.json": "96ccf42dc1d125cba603bae6fca2d274f798a5210115318822ffda168bf5c0d0"}
   },
   "inputs": [],
   "outputs": [],
